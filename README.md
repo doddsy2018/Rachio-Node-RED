@@ -4,9 +4,9 @@ Node-RED flow using Rachio API for sprinkler dashboard and control
 Since the Rachio API has a daily call limit,  this flow builds and uses a config file to store personID, device ID, Zone ID's
 
 The following required Nodes Need to be installed
-node-red-dashboard
-node-red-contrib-config
-node-red-node-ui-table
+1) node-red-dashboard
+2) node-red-contrib-config
+3) node-red-node-ui-table
 
 Process to setup intial config file (Should only have to be done once at install time)
 1) Import Flow into Node-RED
