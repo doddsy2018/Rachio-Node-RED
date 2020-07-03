@@ -17,7 +17,7 @@ Process to setup intial config file (Should only have to be done once at install
 6) Triggert Step 3 to check the config file.
 
 Limits
-Current version assumes only 1 Device (Homes with multiple devices will need to extend logic)
-Config setup to support 8 or 16 zones.  Current version tested on 8 zone only
-Zone Control wired to one zone for now.  Need to explore mulitple zone on/off logic before adding other zones.
+1) Current version assumes only 1 Device (Homes with multiple devices will need to extend logic)
+2) Config setup to support 8 or 16 zones.  Current version tested on 8 zone only
+3) Zone Control wired to one zone for now.  Need to explore mulitple zone on/off logic before adding other zones.
 
