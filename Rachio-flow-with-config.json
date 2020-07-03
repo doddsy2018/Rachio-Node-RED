@@ -1,0 +1,1363 @@
+[
+    {
+        "id": "ccd96b45.1ce8b8",
+        "type": "tab",
+        "label": "Sprinklers",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "bd1e0174.f6755",
+        "type": "http request",
+        "z": "ccd96b45.1ce8b8",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": false,
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 1290,
+        "y": 540,
+        "wires": [
+            [
+                "b7515cd3.321fe",
+                "e13eeaa6.5c0b28"
+            ]
+        ]
+    },
+    {
+        "id": "b7515cd3.321fe",
+        "type": "debug",
+        "z": "ccd96b45.1ce8b8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1510,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "3a5cd16f.46519e",
+        "type": "config",
+        "z": "ccd96b45.1ce8b8",
+        "name": "API KEY",
+        "properties": [
+            {
+                "p": "apikey",
+                "pt": "global",
+                "to": "Your API Key Goes here",
+                "tot": "str"
+            },
+            {
+                "p": "personID",
+                "pt": "global",
+                "to": "Set person ID from step 1 payload",
+                "tot": "str"
+            }
+        ],
+        "active": true,
+        "x": 120,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "f2fd78ca.05b9f8",
+        "type": "http request",
+        "z": "ccd96b45.1ce8b8",
+        "name": "Get Person ID",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": false,
+        "url": "https://api.rach.io/1/public/person/info",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 660,
+        "y": 160,
+        "wires": [
+            [
+                "80f87648.c94cb8"
+            ]
+        ]
+    },
+    {
+        "id": "80f87648.c94cb8",
+        "type": "debug",
+        "z": "ccd96b45.1ce8b8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 890,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "c1d87e93.2e3bf",
+        "type": "change",
+        "z": "ccd96b45.1ce8b8",
+        "name": "Set device-deviceID",
+        "rules": [
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "https://api.rach.io/1/public/device/{deviceID}",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "url",
+                "pt": "msg",
+                "from": "{deviceID}",
+                "fromt": "str",
+                "to": "deviceID",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1040,
+        "y": 540,
+        "wires": [
+            [
+                "bca8c5fe.8a8598",
+                "bd1e0174.f6755"
+            ]
+        ]
+    },
+    {
+        "id": "bca8c5fe.8a8598",
+        "type": "debug",
+        "z": "ccd96b45.1ce8b8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1270,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "97a4574f.24b488",
+        "type": "ui_table",
+        "z": "ccd96b45.1ce8b8",
+        "group": "6b41a345.14a88c",
+        "name": "Zone Info",
+        "order": 1,
+        "width": 25,
+        "height": 5,
+        "columns": [
+            {
+                "field": "zoneNumber",
+                "title": "Zone",
+                "width": "10%",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "name",
+                "title": "Name",
+                "width": "15%",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "id",
+                "title": "ID",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "enabled",
+                "title": "enabled",
+                "width": "10%",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "runtime",
+                "title": "RunTime",
+                "width": "10%",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "yardAreaSquareFeet",
+                "title": "SquareFeet",
+                "width": "10%",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "lastWateredDuration",
+                "title": "Last Run (s)",
+                "width": "10%",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 0,
+        "cts": false,
+        "x": 1740,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "e13eeaa6.5c0b28",
+        "type": "change",
+        "z": "ccd96b45.1ce8b8",
+        "name": "Get Zones Array",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.zones",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1520,
+        "y": 540,
+        "wires": [
+            [
+                "b8a8784.230e388",
+                "97a4574f.24b488"
+            ]
+        ]
+    },
+    {
+        "id": "b8a8784.230e388",
+        "type": "debug",
+        "z": "ccd96b45.1ce8b8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1750,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "1210c3f7.cba1ec",
+        "type": "ui_button",
+        "z": "ccd96b45.1ce8b8",
+        "name": "Refresh",
+        "group": "6b41a345.14a88c",
+        "order": 2,
+        "width": 4,
+        "height": 2,
+        "passthru": false,
+        "label": "Refresh",
+        "tooltip": "Refresh",
+        "color": "",
+        "bgcolor": "",
+        "icon": "fa-refresh",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "",
+        "x": 100,
+        "y": 540,
+        "wires": [
+            [
+                "3ac4595c.c5ee76"
+            ]
+        ]
+    },
+    {
+        "id": "9917d63.16b9028",
+        "type": "ui_button",
+        "z": "ccd96b45.1ce8b8",
+        "name": "Zone 1",
+        "group": "bb308a63.c82fe8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Zone 1",
+        "tooltip": "Zone 1",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "",
+        "x": 100,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "54f4883b.22c7f8",
+        "type": "ui_button",
+        "z": "ccd96b45.1ce8b8",
+        "name": "Zone 2",
+        "group": "bb308a63.c82fe8",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Zone 2",
+        "tooltip": "Zone 2",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "",
+        "x": 100,
+        "y": 800,
+        "wires": [
+            [
+                "f5cd7019.3ee1e"
+            ]
+        ]
+    },
+    {
+        "id": "9831075d.82d698",
+        "type": "ui_button",
+        "z": "ccd96b45.1ce8b8",
+        "name": "Zone 3",
+        "group": "bb308a63.c82fe8",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Zone 3",
+        "tooltip": "Zone 3",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "",
+        "x": 100,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8c368b0f.707448",
+        "type": "ui_button",
+        "z": "ccd96b45.1ce8b8",
+        "name": "Zone 4",
+        "group": "bb308a63.c82fe8",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Zone 4",
+        "tooltip": "Zone 4",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "",
+        "x": 100,
+        "y": 880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "69fc64ed.fc7d4c",
+        "type": "ui_button",
+        "z": "ccd96b45.1ce8b8",
+        "name": "Zone 5",
+        "group": "bb308a63.c82fe8",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Zone 5",
+        "tooltip": "Zone 5",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "",
+        "x": 100,
+        "y": 920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6a173f20.512cc",
+        "type": "ui_button",
+        "z": "ccd96b45.1ce8b8",
+        "name": "Zone 6",
+        "group": "bb308a63.c82fe8",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Zone 6",
+        "tooltip": "Zone 6",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "",
+        "x": 100,
+        "y": 960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2ffc2458.ff005c",
+        "type": "ui_button",
+        "z": "ccd96b45.1ce8b8",
+        "name": "Zone 7",
+        "group": "bb308a63.c82fe8",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Zone 7",
+        "tooltip": "Zone 7",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "",
+        "x": 100,
+        "y": 1000,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f584b55d.7466e8",
+        "type": "ui_button",
+        "z": "ccd96b45.1ce8b8",
+        "name": "STOP SPRINKLERS",
+        "group": "6b41a345.14a88c",
+        "order": 4,
+        "width": 4,
+        "height": 2,
+        "passthru": false,
+        "label": "STOP SPRINKLERS",
+        "tooltip": "STOP SPRINKLERS",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "",
+        "x": 140,
+        "y": 700,
+        "wires": [
+            [
+                "ed44f64d.011598"
+            ]
+        ]
+    },
+    {
+        "id": "3d6614a6.19c95c",
+        "type": "http request",
+        "z": "ccd96b45.1ce8b8",
+        "name": "",
+        "method": "PUT",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 1290,
+        "y": 700,
+        "wires": [
+            [
+                "f826ad3f.ce998"
+            ]
+        ]
+    },
+    {
+        "id": "47413943.dd9628",
+        "type": "debug",
+        "z": "ccd96b45.1ce8b8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1270,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "71e0e921.e158a8",
+        "type": "change",
+        "z": "ccd96b45.1ce8b8",
+        "name": "Set Stop Post Request",
+        "rules": [
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "https://api.rach.io/1/public/device/stop_water",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"id\": \"{deviceID}\" }",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "{deviceID}",
+                "fromt": "str",
+                "to": "deviceID",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1040,
+        "y": 700,
+        "wires": [
+            [
+                "47413943.dd9628",
+                "3d6614a6.19c95c"
+            ]
+        ]
+    },
+    {
+        "id": "f826ad3f.ce998",
+        "type": "debug",
+        "z": "ccd96b45.1ce8b8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1470,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "de4e69dc.c6d4f8",
+        "type": "inject",
+        "z": "ccd96b45.1ce8b8",
+        "name": "1 -Get Person ID",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 140,
+        "y": 160,
+        "wires": [
+            [
+                "79c9450.3b97cbc"
+            ]
+        ]
+    },
+    {
+        "id": "f94a8894.441b18",
+        "type": "debug",
+        "z": "ccd96b45.1ce8b8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1150,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "c73d2f0.5ff14d",
+        "type": "debug",
+        "z": "ccd96b45.1ce8b8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1350,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "358c7341.9ea50c",
+        "type": "function",
+        "z": "ccd96b45.1ce8b8",
+        "name": "extract config",
+        "func": "var personid=msg.payload.id;\nvar deviceid=msg.payload.devices[0].id;\nlet zones = new Array(17);\n\n\nmsg.payload.devices[0].zones.forEach(zone => { \n  zones[zone.zoneNumber]=zone.id;\n});\n\n\n\nmsg.payload={};\nmsg.payload.personid=personid;\nmsg.payload.deviceid=deviceid;\nmsg.payload.zones=zones;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1150,
+        "y": 220,
+        "wires": [
+            [
+                "c73d2f0.5ff14d",
+                "3705ddc.0468022"
+            ]
+        ]
+    },
+    {
+        "id": "3705ddc.0468022",
+        "type": "file",
+        "z": "ccd96b45.1ce8b8",
+        "name": "save config",
+        "filename": "sprinkler-config.json",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1350,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f206dbef.c24678",
+        "type": "file in",
+        "z": "ccd96b45.1ce8b8",
+        "name": "Load config",
+        "filename": "sprinkler-config.json",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 310,
+        "y": 280,
+        "wires": [
+            [
+                "850d542c.d86b58"
+            ]
+        ]
+    },
+    {
+        "id": "d32e0948.dba248",
+        "type": "inject",
+        "z": "ccd96b45.1ce8b8",
+        "name": "3 - Check Config",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 140,
+        "y": 280,
+        "wires": [
+            [
+                "f206dbef.c24678"
+            ]
+        ]
+    },
+    {
+        "id": "8112a01.1a98c6",
+        "type": "debug",
+        "z": "ccd96b45.1ce8b8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 970,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "9ef3ddec.8c6f1",
+        "type": "function",
+        "z": "ccd96b45.1ce8b8",
+        "name": "Check Config",
+        "func": "\nmsg.payload={};\nmsg.payload.personID=global.get(\"personID\");\nmsg.payload.deviceID=global.get(\"deviceID\");\nmsg.payload.zone1ID=global.get(\"zone1ID\");\nmsg.payload.zone2ID=global.get(\"zone2ID\");\nmsg.payload.zone3ID=global.get(\"zone3ID\");\nmsg.payload.zone4ID=global.get(\"zone4ID\");\nmsg.payload.zone5ID=global.get(\"zone5ID\");\nmsg.payload.zone6ID=global.get(\"zone6ID\");\nmsg.payload.zone7ID=global.get(\"zone7ID\");\nmsg.payload.zone8ID=global.get(\"zone8ID\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 800,
+        "y": 280,
+        "wires": [
+            [
+                "8112a01.1a98c6"
+            ]
+        ]
+    },
+    {
+        "id": "f1b803bf.a8885",
+        "type": "function",
+        "z": "ccd96b45.1ce8b8",
+        "name": "set Config",
+        "func": "\nglobal.set(\"deviceID\",msg.payload.deviceid);\nglobal.set(\"personID\",msg.payload.personid);\nglobal.set(\"zone1ID\",msg.payload.zones[1]);\nglobal.set(\"zone2ID\",msg.payload.zones[2]);\nglobal.set(\"zone3ID\",msg.payload.zones[3]);\nglobal.set(\"zone4ID\",msg.payload.zones[4]);\nglobal.set(\"zone5ID\",msg.payload.zones[5]);\nglobal.set(\"zone6ID\",msg.payload.zones[6]);\nglobal.set(\"zone7ID\",msg.payload.zones[7]);\nglobal.set(\"zone8ID\",msg.payload.zones[8]);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 580,
+        "y": 280,
+        "wires": [
+            [
+                "9ef3ddec.8c6f1"
+            ]
+        ]
+    },
+    {
+        "id": "850d542c.d86b58",
+        "type": "json",
+        "z": "ccd96b45.1ce8b8",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 450,
+        "y": 280,
+        "wires": [
+            [
+                "f1b803bf.a8885"
+            ]
+        ]
+    },
+    {
+        "id": "77e6b2ec.239e7c",
+        "type": "ui_button",
+        "z": "ccd96b45.1ce8b8",
+        "name": "Zone 8",
+        "group": "bb308a63.c82fe8",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Zone 8",
+        "tooltip": "Zone 8",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "",
+        "x": 100,
+        "y": 1040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "84744b2a.fe5ef8",
+        "type": "change",
+        "z": "ccd96b45.1ce8b8",
+        "name": "Set API Key Headers",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers.content-type",
+                "pt": "msg",
+                "to": "application/json",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.Authorization",
+                "pt": "msg",
+                "to": "Bearer {apikey}",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "headers.Authorization",
+                "pt": "msg",
+                "from": "{apikey}",
+                "fromt": "str",
+                "to": "apikey",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 540,
+        "wires": [
+            [
+                "c1d87e93.2e3bf"
+            ]
+        ]
+    },
+    {
+        "id": "79c9450.3b97cbc",
+        "type": "change",
+        "z": "ccd96b45.1ce8b8",
+        "name": "Set API Key Headers",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers.content-type",
+                "pt": "msg",
+                "to": "application/json",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.Authorization",
+                "pt": "msg",
+                "to": "Bearer {apikey}",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "headers.Authorization",
+                "pt": "msg",
+                "from": "{apikey}",
+                "fromt": "str",
+                "to": "apikey",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 160,
+        "wires": [
+            [
+                "f2fd78ca.05b9f8"
+            ]
+        ]
+    },
+    {
+        "id": "1350df1f.1f5f21",
+        "type": "inject",
+        "z": "ccd96b45.1ce8b8",
+        "name": "2 - Create & Save Config",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 170,
+        "y": 220,
+        "wires": [
+            [
+                "46388034.30187"
+            ]
+        ]
+    },
+    {
+        "id": "d3e94575.135c88",
+        "type": "change",
+        "z": "ccd96b45.1ce8b8",
+        "name": "Set person-personID",
+        "rules": [
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "https://api.rach.io/1/public/person/{personID}",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "url",
+                "pt": "msg",
+                "from": "{personID}",
+                "fromt": "str",
+                "to": "personID",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 220,
+        "wires": [
+            [
+                "8c6ac2de.9296c"
+            ]
+        ]
+    },
+    {
+        "id": "8c6ac2de.9296c",
+        "type": "http request",
+        "z": "ccd96b45.1ce8b8",
+        "name": "Get Person Info",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": false,
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 900,
+        "y": 220,
+        "wires": [
+            [
+                "358c7341.9ea50c",
+                "f94a8894.441b18"
+            ]
+        ]
+    },
+    {
+        "id": "46388034.30187",
+        "type": "change",
+        "z": "ccd96b45.1ce8b8",
+        "name": "Set API Key Headers",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers.content-type",
+                "pt": "msg",
+                "to": "application/json",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.Authorization",
+                "pt": "msg",
+                "to": "Bearer {apikey}",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "headers.Authorization",
+                "pt": "msg",
+                "from": "{apikey}",
+                "fromt": "str",
+                "to": "apikey",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 220,
+        "wires": [
+            [
+                "d3e94575.135c88"
+            ]
+        ]
+    },
+    {
+        "id": "3ac4595c.c5ee76",
+        "type": "file in",
+        "z": "ccd96b45.1ce8b8",
+        "name": "Load config",
+        "filename": "sprinkler-config.json",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 310,
+        "y": 540,
+        "wires": [
+            [
+                "4158b6fa.b11ad8"
+            ]
+        ]
+    },
+    {
+        "id": "765c8bb.d9c2c74",
+        "type": "function",
+        "z": "ccd96b45.1ce8b8",
+        "name": "set Config",
+        "func": "\nglobal.set(\"deviceID\",msg.payload.deviceid);\nglobal.set(\"personID\",msg.payload.personid);\nglobal.set(\"zone1ID\",msg.payload.zones[1]);\nglobal.set(\"zone2ID\",msg.payload.zones[2]);\nglobal.set(\"zone3ID\",msg.payload.zones[3]);\nglobal.set(\"zone4ID\",msg.payload.zones[4]);\nglobal.set(\"zone5ID\",msg.payload.zones[5]);\nglobal.set(\"zone6ID\",msg.payload.zones[6]);\nglobal.set(\"zone7ID\",msg.payload.zones[7]);\nglobal.set(\"zone8ID\",msg.payload.zones[8]);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 580,
+        "y": 540,
+        "wires": [
+            [
+                "84744b2a.fe5ef8"
+            ]
+        ]
+    },
+    {
+        "id": "4158b6fa.b11ad8",
+        "type": "json",
+        "z": "ccd96b45.1ce8b8",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 450,
+        "y": 540,
+        "wires": [
+            [
+                "765c8bb.d9c2c74"
+            ]
+        ]
+    },
+    {
+        "id": "4ecbf0af.a14b3",
+        "type": "change",
+        "z": "ccd96b45.1ce8b8",
+        "name": "Set API Key Headers",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers.content-type",
+                "pt": "msg",
+                "to": "application/json",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.Authorization",
+                "pt": "msg",
+                "to": "Bearer {apikey}",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "headers.Authorization",
+                "pt": "msg",
+                "from": "{apikey}",
+                "fromt": "str",
+                "to": "apikey",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 800,
+        "y": 700,
+        "wires": [
+            [
+                "71e0e921.e158a8"
+            ]
+        ]
+    },
+    {
+        "id": "ed44f64d.011598",
+        "type": "file in",
+        "z": "ccd96b45.1ce8b8",
+        "name": "Load config",
+        "filename": "sprinkler-config.json",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 350,
+        "y": 700,
+        "wires": [
+            [
+                "9cb66912.b743c8"
+            ]
+        ]
+    },
+    {
+        "id": "f8db68b6.afa3e8",
+        "type": "function",
+        "z": "ccd96b45.1ce8b8",
+        "name": "set Config",
+        "func": "\nglobal.set(\"deviceID\",msg.payload.deviceid);\nglobal.set(\"personID\",msg.payload.personid);\nglobal.set(\"zone1ID\",msg.payload.zones[1]);\nglobal.set(\"zone2ID\",msg.payload.zones[2]);\nglobal.set(\"zone3ID\",msg.payload.zones[3]);\nglobal.set(\"zone4ID\",msg.payload.zones[4]);\nglobal.set(\"zone5ID\",msg.payload.zones[5]);\nglobal.set(\"zone6ID\",msg.payload.zones[6]);\nglobal.set(\"zone7ID\",msg.payload.zones[7]);\nglobal.set(\"zone8ID\",msg.payload.zones[8]);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 620,
+        "y": 700,
+        "wires": [
+            [
+                "4ecbf0af.a14b3"
+            ]
+        ]
+    },
+    {
+        "id": "9cb66912.b743c8",
+        "type": "json",
+        "z": "ccd96b45.1ce8b8",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 490,
+        "y": 700,
+        "wires": [
+            [
+                "f8db68b6.afa3e8"
+            ]
+        ]
+    },
+    {
+        "id": "d61871c0.bbef",
+        "type": "change",
+        "z": "ccd96b45.1ce8b8",
+        "name": "Set Zone Start Post Request",
+        "rules": [
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "https://api.rach.io/1/public/zone/start",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"id\": \"{zoneID}\",\"duration\": 300}",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "{zoneID}",
+                "fromt": "str",
+                "to": "zone2ID",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1020,
+        "y": 800,
+        "wires": [
+            [
+                "679d435d.c3c47c"
+            ]
+        ]
+    },
+    {
+        "id": "2f4f2ad6.5a6906",
+        "type": "change",
+        "z": "ccd96b45.1ce8b8",
+        "name": "Set API Key Headers",
+        "rules": [
+            {
+                "t": "set",
+                "p": "headers.content-type",
+                "pt": "msg",
+                "to": "application/json",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.Authorization",
+                "pt": "msg",
+                "to": "Bearer {apikey}",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "headers.Authorization",
+                "pt": "msg",
+                "from": "{apikey}",
+                "fromt": "str",
+                "to": "apikey",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 800,
+        "wires": [
+            [
+                "d61871c0.bbef"
+            ]
+        ]
+    },
+    {
+        "id": "f5cd7019.3ee1e",
+        "type": "file in",
+        "z": "ccd96b45.1ce8b8",
+        "name": "Load config",
+        "filename": "sprinkler-config.json",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 270,
+        "y": 800,
+        "wires": [
+            [
+                "8b5a9f79.d5ba8"
+            ]
+        ]
+    },
+    {
+        "id": "c2277e31.886b8",
+        "type": "function",
+        "z": "ccd96b45.1ce8b8",
+        "name": "set Config",
+        "func": "\nglobal.set(\"deviceID\",msg.payload.deviceid);\nglobal.set(\"personID\",msg.payload.personid);\nglobal.set(\"zone1ID\",msg.payload.zones[1]);\nglobal.set(\"zone2ID\",msg.payload.zones[2]);\nglobal.set(\"zone3ID\",msg.payload.zones[3]);\nglobal.set(\"zone4ID\",msg.payload.zones[4]);\nglobal.set(\"zone5ID\",msg.payload.zones[5]);\nglobal.set(\"zone6ID\",msg.payload.zones[6]);\nglobal.set(\"zone7ID\",msg.payload.zones[7]);\nglobal.set(\"zone8ID\",msg.payload.zones[8]);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 540,
+        "y": 800,
+        "wires": [
+            [
+                "2f4f2ad6.5a6906"
+            ]
+        ]
+    },
+    {
+        "id": "8b5a9f79.d5ba8",
+        "type": "json",
+        "z": "ccd96b45.1ce8b8",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 410,
+        "y": 800,
+        "wires": [
+            [
+                "c2277e31.886b8"
+            ]
+        ]
+    },
+    {
+        "id": "679d435d.c3c47c",
+        "type": "http request",
+        "z": "ccd96b45.1ce8b8",
+        "name": "",
+        "method": "PUT",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 1290,
+        "y": 800,
+        "wires": [
+            [
+                "65de2354.f62e4c"
+            ]
+        ]
+    },
+    {
+        "id": "65de2354.f62e4c",
+        "type": "debug",
+        "z": "ccd96b45.1ce8b8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1490,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "6b41a345.14a88c",
+        "type": "ui_group",
+        "z": "",
+        "name": "Zone Info",
+        "tab": "f6e1286a.b06278",
+        "order": 1,
+        "disp": true,
+        "width": "25",
+        "collapse": false
+    },
+    {
+        "id": "bb308a63.c82fe8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Sprinkler Control",
+        "tab": "f6e1286a.b06278",
+        "order": 2,
+        "disp": true,
+        "width": "4",
+        "collapse": false
+    },
+    {
+        "id": "f6e1286a.b06278",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Sprinkler",
+        "icon": "dashboard",
+        "order": 7,
+        "disabled": false,
+        "hidden": false
+    }
+]
